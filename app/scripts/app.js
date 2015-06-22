@@ -18,17 +18,24 @@ angular
     'ngTouch',
     'restangular'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/collections.html',
         controller: 'CollectionsCtrl'
       })
 
-      .when('/:id', {
+      .when('/collection/:id', {
         templateUrl: 'views/collection.html',
         controller: 'CollectionsSingleCtrl'
       })
+
+
+      .when('/new', {
+        templateUrl: 'views/new.html',
+        controller: 'CollectionNewCtrl'
+      })
+
 
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -42,7 +49,9 @@ angular
       });
 
 
-      $locationProvider.html5Mode(true);
+      // $locationProvider.html5Mode(true);
+
+      $httpProvider.defaults.withCredentials = true;
 
 
   })
