@@ -29,10 +29,14 @@ angular
         templateUrl: 'views/collection.html',
         controller: 'CollectionsSingleCtrl'
       })
-      // .when('/links', {
-      //   templateUrl: 'views/links.html',
-      //   controller: 'LinksCtrl'
-      // })
+
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+
+
+
       .otherwise({
         redirectTo: '/'
       });
