@@ -3,7 +3,8 @@
     <h1>Collections</h1>
 
     <div ng-repeat="collection in collections">
-      <p>{{collection.title}}</p>
+      <p>{{collection.baseScore}} score</p>
+      <a href="/#/{{collection.id}}">{{collection.title}}</a>
     </div>
 
   </div>

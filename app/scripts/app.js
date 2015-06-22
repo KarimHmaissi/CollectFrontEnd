@@ -22,13 +22,21 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/collections.html',
-        controller: 'CollectionCtrl'
+        controller: 'CollectionsCtrl'
       })
-      .when('/links', {
-        templateUrl: 'views/links.html',
-        controller: 'LinksCtrl'
+
+      .when('/:id', {
+        templateUrl: 'views/collection.html',
+        controller: 'CollectionsSingleCtrl'
       })
+      // .when('/links', {
+      //   templateUrl: 'views/links.html',
+      //   controller: 'LinksCtrl'
+      // })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function (RestangularProvider) {
+    RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
   });
