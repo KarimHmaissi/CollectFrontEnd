@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'restangular'
   ])
-  .config(function ($routeProvider,locationProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/collections.html',
