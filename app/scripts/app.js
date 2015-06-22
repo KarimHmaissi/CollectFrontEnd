@@ -40,6 +40,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+
+      $locationProvider.html5Mode(true);
+
+
   })
   .config(function (RestangularProvider) {
     RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
