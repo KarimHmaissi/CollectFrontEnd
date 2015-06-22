@@ -8,10 +8,8 @@
  * Controller of the collectFrontEndApp
  */
 angular.module('collectFrontEndApp')
-  .controller('CollectionsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CollectionsCtrl', ["$scope, Restangular"], function ($scope, Restangular) {
+  		var collections = Restangular.oneUrl("collections", "http://192.168.0.6/api/v1/");
+  		$scope.collections = collections.getList();
+
   });
