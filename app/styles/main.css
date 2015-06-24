@@ -40,3 +40,8 @@ textarea {
   width: 100%;
 }
 
+
+
+.embed-container > img {
+  max-width: 50%;
+}

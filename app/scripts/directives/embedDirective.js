@@ -13,16 +13,26 @@ module.directive("embed", function (embedUtilityService) {
 			var link = $scope.link;
 
 			//flags
-			var embed = null;
+			var embed = "";
 			var isImage = false;
 			var isVideo = false;
 			var isGallery = false;
 			var isEmbedly = false; 
 			var largeThumbnail = false;  
 
+			var updatedImgurLink = embedUtilityService.fixImgur(link.linkUrl.url);
 
-			//check type of embed
-			if(link.linkUrl.embedPresent) {
+			//imgur
+			if(updatedImgurLink) {
+				embed = updatedImgurLink;
+				isImage = true;
+				console.log("found an imgur image: " + link.linkUrl.url);
+			}
+
+			//embedly embed
+			else if(link.linkUrl.embedPresent) {
+				console.log("found an embedly embed: " + link.linkUrl.url);
+				console.log(link.linkUrl.embedHtml);
 				embed = link.linkUrl.embedHtml;
 				isEmbedly = true;
 			}
@@ -30,6 +40,7 @@ module.directive("embed", function (embedUtilityService) {
 			//img
 			else if(embedUtilityService.checkIsImg(link.linkUrl.url)) {
 				//link is an image
+				console.log("found an image: " + link.linkUrl.url);
 				embed = link.linkUrl.url;
 				isImage = true;
 			}
@@ -37,11 +48,14 @@ module.directive("embed", function (embedUtilityService) {
 			//video embed
 			else if (link.linkUrl.providerUrl.indexOf("www.youtube.com") > -1) {
 
+
 				var videoId = link.linkUrl.url.split("v=")[1];
 
 				if(videoId) {
+
+					console.log("found an video embed: " + link.linkUrl.url);
 					embed = "<iframe width=\"560\" height=\"315\" src=\"//www.youtube.com/embed/" 
-					                    + post.videoId + "\" frameborder=\"0\" allowfullscreen></iframe>";
+					                    + videoId + "\" frameborder=\"0\" allowfullscreen></iframe>";
 					isVideo = true;
 				}
 
@@ -49,25 +63,28 @@ module.directive("embed", function (embedUtilityService) {
 
 			//last ditch efforts
 			else {
-				//is imgur link? Try and fix
 
-				var updatedImgurLink = embedUtilityService.fixImgur(link.linkUrl.url);
 
-				if(updatedImgurLink) {
-					embed = updatedImgurLink;
-					isImage = true;
+				var newImage = new Image();
+				newImage.src = link.linkUrl.thumbnail;
+
+				if(newImage.width > 205) {
+				    largeThumbnail = true;
 				} else {
-					var newImage = new Image();
-					newImage.src = post.thumbnail;
-					newImage.src = link.linkUrl.thumbnail;
-
-					if(newImage.width > 205) {
-					    largeThumbnail = true;
-					} else {
-					    //no media to embed hide element
-					    element.hide();
-					}
+				    //no media to embed hide element
+				    element.hide();
 				}
+			
+
+				// var updatedImgurLink = embedUtilityService.fixImgur(link.linkUrl.url);
+
+				// if(updatedImgurLink) {
+				// 	embed = updatedImgurLink;
+				// 	isImage = true;
+				// 	console.log("found an imgur image: " + link.linkUrl.url);
+				// } else {
+					
+				// }
 
 			}
 
@@ -79,6 +96,7 @@ module.directive("embed", function (embedUtilityService) {
 
 			element.on("click", function (e) {
 				console.log("show");
+				console.log(embed);
 
 				e.preventDefault();
 
@@ -114,7 +132,11 @@ module.directive("embed", function (embedUtilityService) {
 
 					//show embedly embed - iframe
 					else if(isEmbedly) {
-						var embedElement = $(embedUtilityService.htmlDecode(embed));
+						// var decodedHtml = embedUtilityService.htmlDecode(embed);
+						// console.log(decodedHtml);
+
+						var embedElement = $(embed);
+						console.log(embedElement);
 
 						embedElement.appendTo(embedContainer);
 

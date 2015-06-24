@@ -8,10 +8,15 @@ module.service("embedUtilityService", function() {
 
 
         htmlDecode: function(input) {
+        	console.log("hit htmlDecode");
+        	console.log(input);
         	if(input !== "undefined" && input !== null) {
+        		console.log("decoding html");
         		var e = document.createElement("div");
 	          	e.innerHTML = input;
 	          	return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        	} else {
+        		return "error";
         	}
         },
 
@@ -30,8 +35,14 @@ module.service("embedUtilityService", function() {
 				} else {
 					url = url.replace(/(\?.*)|(#.*)|(&.*)/g, "")
 					//first remove query parameters from the url
-
-					return url + ".jpg"
+					if(url.indexOf("gifv") > -1) {
+						console.log("found gifv");
+						url = url.replace("gifv", "gif");
+						return url;
+					} else {
+						return url + ".jpg";
+					}
+					
 				}
 
 			}
@@ -39,7 +50,7 @@ module.service("embedUtilityService", function() {
 		},
 
 		checkIsImg: function(url) {
-			return (url.match(/\.(jpeg|jpg|gif|png)$/) !== null);
+			return (url.match(/\.(jpeg|jpg|gif|png|gifv)$/) !== null);
 		}
 
 	}
