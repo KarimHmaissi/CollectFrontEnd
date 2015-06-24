@@ -30,5 +30,13 @@
 }
 
 
+a[ng-click]{
+    cursor: pointer;
+}
 
+
+
+textarea {
+  width: 100%;
+}
 

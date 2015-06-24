@@ -1,10 +1,64 @@
 
 <div class="row">
-    <div class="col-xs-12">
-        <!-- <h1>Collection editior</h1> -->
+  <div class="col-xs-4">
+    <form role="form" ng-submit="saveCollection()" method="post">
+      <div class="form-group">
+        <label>Edit title</label>
+        <input type="text" ng-model="newCollection.title">
+      </div>
+      <div class="form-group">
+        <label>Edit description</label>
+        <input type="text" ng-model="newCollection.description">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Save collection</button>
 
-        <h1>{{newCollection.title}}</h1>
-        <p>{{newCollection.description}}</p>
+    </form>
+
+     <form id="add-links-form" ng-submit="submitLinks()">
+          <label> Links
+              <textarea name="link-textbox" id="link-textbox" class="link-textbox" rows="12"  ng-model="links"> </textarea>
+          </label>
+
+          <button type="submit" class="btn btn-default">Add links</button>
+      </form>
+  </div>
+
+  <div class="col-xs-8">
+    <h1>{{newCollection.title}}</h1>
+    <p>{{newCollection.description}}</p>
+
+    <div class="row links-container" >
+        <div class="col-xs-12 links" id="links" >
+        <div ng-repeat="link in crawledLinks" class="links">
+          <div class="link">
+            <div class="thumbnail-holder">
+              <img src="{{link.thumbnail}}">
+            </div>
+            <div class="content">
+              <a href="{{link.url}}"><p class="title">{{link.title}}</p></a>
+              <p class="description">{{link.description}}</p>
+              <p class="provider">{{link.providerDisplay}}</p>
+            </div>
+
+            <a class="btn btn-primary" ng-click="addGroup({{$index}})">Add to new group</a>
+            
+          </div>
+        </div>
+        </div>  
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-xs-12">
+
+        
 
 
         <form role="form" ng-submit="saveCollection()" method="post">
@@ -21,33 +75,6 @@
         
     </div>   
 </div>
+ -->
 
-<div class="row">
-    <div class="col-xs-6 col-offset-xs-2">
-        <form id="add-links-form" ng-submit="submitLinks()">
-            <label> Links
-                <textarea name="link-textbox" id="link-textbox" class="link-textbox" rows="12" cols="140" ng-model="links"> </textarea>
-            </label>
 
-            <button type="submit" class="btn btn-default">Add links</button>
-        </form>
-    </div>
-</div>
-
-<div class="row links-container" >
-    <div class="col-xs-12 links" id="links" >
-		<div ng-repeat="link in crawledLinks" class="links">
-		  <div class="link">
-		  	<div class="thumbnail-holder">
-		  		<img src="{{link.thumbnail}}">
-		  	</div>
-		  	<div class="content">
-		  		<a href="{{link.url}}"><p class="title">{{link.title}}</p></a>
-		  		<p class="description">{{link.description}}</p>
-		  		<p class="provider">{{link.providerDisplay}}</p>
-		  	</div>
-		  
-		  </div>
-		</div>
-    </div>  
-</div>

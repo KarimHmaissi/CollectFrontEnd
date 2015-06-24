@@ -14,7 +14,7 @@ var validUrl = function (url) {
 };
 
  module.controller('CollectionsCtrl', function ($scope, Restangular) {
-		var collections = Restangular.oneUrl("collections", "http://192.168.0.6:1337/api/v1/collections");
+		var collections = Restangular.oneUrl("collections", "http://192.168.0.4:1337/api/v1/collections");
   		
   		collections.getList().then(function (collections) {
   			$scope.collections = collections;
@@ -26,7 +26,7 @@ var validUrl = function (url) {
 
 module.controller('CollectionsSingleCtrl', function ($scope, Restangular, $routeParams) {
   		var collections = Restangular.oneUrl(
-        "collections", "http://192.168.0.6:1337/api/v1/collections/" + $routeParams.id);
+        "collections", "http://192.168.0.4:1337/api/v1/collections/" + $routeParams.id);
 
   		$scope.id = $routeParams.id;
 
@@ -78,7 +78,7 @@ module.controller('CollectionNewCtrl', function ($scope, $rootScope, $http, $loc
 
             console.log("about to process");
             $http({method: "POST",
-                  url: "http://192.168.0.6:1337/api/v1/links?access_token=" + $rootScope.session.token,
+                  url: "http://192.168.0.4:1337/api/v1/links?access_token=" + $rootScope.session.token,
                   data: xsrf,
                   headers : crawlLinkHeaders })
             .success(function (link) {
@@ -125,7 +125,7 @@ module.controller('CollectionNewCtrl', function ($scope, $rootScope, $http, $loc
         console.log(xsrf);
 
         // $http({method: "POST",
-        //        url: "http://192.168.0.6:1337/api/v1/collections?access_token=" + $rootScope.session.token,
+        //        url: "http://192.168.0.4:1337/api/v1/collections?access_token=" + $rootScope.session.token,
         //        data: xsrf,
         //        headers : crawlLinkHeaders 
         // })
@@ -134,6 +134,14 @@ module.controller('CollectionNewCtrl', function ($scope, $rootScope, $http, $loc
         // });
 
     };
+
+
+
+    $scope.addGroup = function (index) {
+      console.log("add group here");
+      console.log(index);
+      console.log($scope.newCollection.links[index]);
+    }
 });
 
 
