@@ -22,18 +22,18 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/collections.html',
-        controller: 'CollectionsCtrl'
+        controller: 'CollectionsIndexCtrl'
       })
 
       .when('/collection/:id', {
         templateUrl: 'views/collection.html',
-        controller: 'CollectionsSingleCtrl'
+        controller: 'CollectionsGetCtrl'
       })
 
 
       .when('/new', {
         templateUrl: 'views/new.html',
-        controller: 'CollectionNewCtrl'
+        controller: 'CollectionsSubmitCtrl'
       })
 
 

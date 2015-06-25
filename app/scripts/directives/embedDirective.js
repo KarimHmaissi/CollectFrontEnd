@@ -2,7 +2,7 @@
 
 var module = angular.module('collectFrontEndApp');
 
-module.directive("embed", function (embedUtilityService) {
+module.directive("embed", function (urlUtilityService) {
 	
 	return {
 		restrict: "A",
@@ -20,7 +20,7 @@ module.directive("embed", function (embedUtilityService) {
 			var isEmbedly = false; 
 			var largeThumbnail = false;  
 
-			var updatedImgurLink = embedUtilityService.fixImgur(link.linkUrl.url);
+			var updatedImgurLink = urlUtilityService.fixImgur(link.linkUrl.url);
 
 			//imgur
 			if(updatedImgurLink) {
@@ -38,7 +38,7 @@ module.directive("embed", function (embedUtilityService) {
 			}
 
 			//img
-			else if(embedUtilityService.checkIsImg(link.linkUrl.url)) {
+			else if(urlUtilityService.checkIsImg(link.linkUrl.url)) {
 				//link is an image
 				console.log("found an image: " + link.linkUrl.url);
 				embed = link.linkUrl.url;
@@ -63,8 +63,6 @@ module.directive("embed", function (embedUtilityService) {
 
 			//last ditch efforts
 			else {
-
-
 				var newImage = new Image();
 				newImage.src = link.linkUrl.thumbnail;
 
@@ -74,18 +72,6 @@ module.directive("embed", function (embedUtilityService) {
 				    //no media to embed hide element
 				    element.hide();
 				}
-			
-
-				// var updatedImgurLink = embedUtilityService.fixImgur(link.linkUrl.url);
-
-				// if(updatedImgurLink) {
-				// 	embed = updatedImgurLink;
-				// 	isImage = true;
-				// 	console.log("found an imgur image: " + link.linkUrl.url);
-				// } else {
-					
-				// }
-
 			}
 
 
@@ -102,6 +88,7 @@ module.directive("embed", function (embedUtilityService) {
 
 				if(!shown) {
 					shown = true;
+					$(this).addClass("open");
 
 					var embedContainer = $("<div />", {class: "embed-container margin-top-sm"});
 
@@ -132,7 +119,7 @@ module.directive("embed", function (embedUtilityService) {
 
 					//show embedly embed - iframe
 					else if(isEmbedly) {
-						// var decodedHtml = embedUtilityService.htmlDecode(embed);
+						// var decodedHtml = urlUtilityService.htmlDecode(embed);
 						// console.log(decodedHtml);
 
 						var embedElement = $(embed);
@@ -167,6 +154,7 @@ module.directive("embed", function (embedUtilityService) {
 
 				} else {
 					shown = false;
+					$(this).removeClass("open");
 					$(this).text("show");
 					$(this).closest(".link").find(".embed-container").remove();
 				}

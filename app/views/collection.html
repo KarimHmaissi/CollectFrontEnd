@@ -1,28 +1,98 @@
-<div class="row">
-  <div class="col-xs-12">
-    <p>{{collection.baseScore}} score</p> 
-    <h1>{{collection.title}}</h1>
-     
 
-    <div>
-      <div ng-repeat="link in collection.links" class="links">
-	      <div class="link">
 
-	      	<div class="thumbnail-holder">
-	      		<img src="{{link.linkUrl.thumbnail}}">
-	      	</div>
-	      	<div class="content">
-	      		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-	      		<p class="description">{{link.description}}</p>
-	      		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
-	      	</div>
 
-	      	<a embed="" href="#">Show</a>
-	      
-	      </div>
-      </div>
+
+
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+        	<div class="sidebar-nav text-center">
+        		<div class="controls">
+        			<a open="" href="" class="btn btn-primary" >Open all embeds</a>
+        		</div>
+        	</div>
+           
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+           
+
+        <div class="">
+	        <div class="row collection">
+	          <div class="col-xs-12">
+
+	            <!-- <p>{{collection.baseScore}} score</p>  -->
+	            <div class="row">
+	        	    <div class="col-lg-7 col-lg-offset-2">
+	        	    	<div class="collection-controls">
+	        	    		<ul class="inline">
+	        	    			<li><a ng-click="share()" class="">Share</a></li>
+	        	    			<li><a ng-click="submitLink()" class="">Submit Link</a></li>
+	        	    			<li><a ng-click="filter()" class="">Filter</a></li>
+	        	    		</ul>
+	        	    		
+	        	    	</div>
+
+	            	    <div class="collection-header" ng-cloak>
+	            	    	<h1 class="title">{{collection.title}}</h1>
+	            	    	<p class="description">{{collection.description}}</p>
+	            	    </div>
+
+	            	    <div class="collection-meta" ng-cloak>
+	            	    	<ul class="inline">
+	            	    		<li><p><span>{{collection.baseScore}}</span><span>votes</span></p></li>
+	            	    		<li><p><span>{{collection.links.length}}</span><span>links</span></p></li>
+	            	    		<li><p><span>27 minutes ago</span><span>created</span></p></li>
+	            	    		<li><p><span><a href="#">DaveAnderson</a></span><span>owner</span></p></li>
+
+	            	    	</ul>
+	            	    </div>
+
+	            	    <div class="collection-controls">
+	            	    	<ul class="inline">
+	            	    		<li><a ng-click="save()" class="btn btn-primary">Save collection</a></li>
+	            	 
+	            	    	</ul>
+	            	    	
+	            	    </div>
+	            	    
+	            		<div  class="links" ng-cloak>
+	            		  <div class="link clearfix" ng-repeat="link in collection.links">
+	            		  <div class="clearfix">
+	        	    		  	<div class="thumbnail-holder">
+	        	    		  		<img src="{{link.linkUrl.thumbnail}}">
+	        	    		  	</div>
+	        	    		  	<div class="content">
+	        	    		  		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
+	        	    		  		<p class="description">{{link.description | limitTo:140}}</p>
+	        	    		  		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
+	        	    		  	</div>
+	            		  	</div>
+
+	            		  	<a embed="" href="#" class="embed-link">Show</a>
+	            		  
+	            		  </div>
+	            		</div>
+	        	    </div>
+
+
+	            </div>
+	            
+
+
+	          </div>
+
+	          
+
+	        </div>
+
+
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-
-  </div>
-</div>
-
+    <!-- /#wrapper -->
