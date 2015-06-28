@@ -1,12 +1,25 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Collections</h1>
+<div class="container">
+	<div class="row">
+	  <div class="col-xs-12">
+	    <h1>Collections</h1>
+	    <ul  class="collections">
+		    <li ng-repeat="collection in collections">
+			      <div class="collection clearfix">
+			      	
+				      	<a href="/collection/{{collection.id}}"><h3>{{collection.title}}</h3></a>
+				      	<p class="description">{{collection.description | limitTo:140}}</p>
+				      	<div class="meta">
+				      		<ul class="inline">
+				      			<li><p>{{collection.baseScore}} score</p></li>
+				      			<li><p>{{collection.links.length}} links</p></li>
+				      			<li><p>27 mintues ago submited</p></li>
+				      		</ul>
+				      	</div>
+			      </div>
+		      
+		    </li>
+	    </ul>
 
-    <div ng-repeat="collection in collections">
-      
-      <a href="/#/collection/{{collection.id}}"><h3>{{collection.title}}</h3></a>
-      <p>{{collection.baseScore}} score</p>
-    </div>
-
-  </div>
+	  </div>
+	</div>
 </div>
