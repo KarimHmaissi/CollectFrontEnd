@@ -2,7 +2,7 @@
 
 var module = angular.module('collectFrontEndApp');
 
-module.directive("embed", function (urlUtilityService) {
+module.directive("embed", function ($compile, urlUtilityService) {
 	
 	return {
 		restrict: "A",
@@ -76,6 +76,7 @@ module.directive("embed", function (urlUtilityService) {
 
 
 
+
 			//add embed to dom
 
 			var shown = false;
@@ -97,7 +98,8 @@ module.directive("embed", function (urlUtilityService) {
 
 					//show img
 					if(isImage)  {
-						var embedElement = $("<img src='" + embed + "' />");
+						var embedElement = $($compile("<img src='" + embed + "'  class='images-loaded' images-loaded-events='ctrl.imgLoadedEvents' />")($scope));
+						
 
 						var fullResoLink = $("<a />", {
 							href: link.linkUrl.url, 
@@ -107,11 +109,19 @@ module.directive("embed", function (urlUtilityService) {
 						embedElement.appendTo(embedContainer);
 						fullResoLink.appendTo(embedContainer);
 
+						// Remove thumbnail
+						$(this).siblings().children(".thumbnail-holder").hide("fast");
+
 						$(this).children(".feed-preview-img").hide(300);
 						$(this).append(embedContainer);
 
+						$scope.$apply(); 
+
+						//remove close link
+						$(this).val("");
+
 						embedElement.load(function () {
-							//img loaded
+							
 						}).error(function () {
 							//error
 						})
@@ -162,6 +172,11 @@ module.directive("embed", function (urlUtilityService) {
 
 
 			});
+
+			//if link has not title and an image embed just open the embed now
+			if($(element).closest(".link").find(".content .title").val() === "" && isImage) {
+				$(element).click();
+			}
 
 
 		}

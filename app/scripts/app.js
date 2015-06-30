@@ -16,7 +16,11 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'restangular'
+    // 'restangular',
+    'angular-storage',
+    'slugifier',
+    'angular-images-loaded',
+    'angularMoment'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -26,6 +30,11 @@ angular
       })
 
       .when('/collection/:id', {
+        templateUrl: 'views/collection.html',
+        controller: 'CollectionsGetCtrl'
+      })
+
+      .when('/collection/:id/:title', {
         templateUrl: 'views/collection.html',
         controller: 'CollectionsGetCtrl'
       })
@@ -53,8 +62,26 @@ angular
 
       $httpProvider.defaults.withCredentials = true;
 
+      $httpProvider.interceptors.push("authInterceptor");
 
+      
+
+
+  }).run(function (store, $rootScope, $location, $http) {
+    $rootScope.session = store.get("user"); 
+    $rootScope.logout = function () {
+        var handler = function (result) {
+            $rootScope.session = null;
+            store.remove('user');
+            $location.path("/");
+        }
+
+        $http({
+            method: "GET",
+            url: "http://192.168.0.4:1337/auth/logout"
+        }).success(handler);
+    };
   })
-  .config(function (RestangularProvider) {
-    RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
-  });
+  // .config(function (RestangularProvider) {
+  //   RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
+  // });

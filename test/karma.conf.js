@@ -33,6 +33,12 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/lodash/lodash.js',
       'bower_components/restangular/dist/restangular.js',
+      'bower_components/eventEmitter/EventEmitter.js',
+      'bower_components/eventie/eventie.js',
+      'bower_components/imagesloaded/imagesloaded.js',
+      'bower_components/angular-images-loaded/angular-images-loaded.js',
+      'bower_components/moment/moment.js',
+      'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

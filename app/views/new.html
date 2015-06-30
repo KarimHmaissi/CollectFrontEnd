@@ -1,80 +1,105 @@
-<div class="container">
-<div class="row">
-  <div class="col-xs-4">
-    <form role="form" ng-submit="saveCollection()" method="post">
-      <div class="form-group">
-        <label>Edit title</label>
-        <input type="text" ng-model="newCollection.title">
+
+
+
+<div id="wrapper"> 
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" class="sidebar-wrapper">
+      <div class="sidebar-nav margin-top">
+      <h3>Create a new collection</h3>  
+       <form role="form" ng-submit="saveCollection()" method="post">
+         <div class="form-group">
+           <label>Edit title</label>
+           <input type="text" ng-model="newCollection.title">
+         </div>
+         <div class="form-group">
+           <label>Edit description</label>
+           <input type="text" ng-model="newCollection.description">
+         </div>
+         <button type="submit" class="btn btn-primary btn-lg">Save collection</button>
+
+       </form>
+
+       
       </div>
-      <div class="form-group">
-        <label>Edit description</label>
-        <input type="text" ng-model="newCollection.description">
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg">Save collection</button>
+       
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-    </form>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="">
+          <div class="row">
+            <div class="col-lg-7 col-lg-offset-2 collection">
 
-     <form id="add-links-form" ng-submit="submitLinks()">
-          <label> Links
-              <textarea name="link-textbox" id="link-textbox" class="link-textbox" rows="12"  ng-model="links"> </textarea>
-          </label>
+            <div class="collection-header" ng-cloak>
 
-          <button type="submit" class="btn btn-default">Add links</button>
-      </form>
-  </div>
 
-  <div class="col-xs-8">
-    <h1>{{newCollection.title}}</h1>
-    <p>{{newCollection.description}}</p>
+              <h1 class="title">{{newCollection.title}}</h1>
+              <p class="description">{{newCollection.description}}</p>
 
-    <div class="row links-container" >
-        <div class="col-xs-12 links" id="links" >
-        <div ng-repeat="link in crawledLinks" class="links">
-          <div class="link">
-            <div class="thumbnail-holder">
-              <img src="{{link.thumbnail}}">
-            </div>
-            <div class="content">
-              <a href="{{link.url}}"><p class="title">{{link.title}}</p></a>
-              <p class="description">{{link.description}}</p>
-              <p class="provider">{{link.providerDisplay}}</p>
+              <form id="add-links-form" ng-submit="submitLinks()" class="margin-top-lg">
+                   <label> Links </label>
+                       <textarea name="link-textbox" id="link-textbox" class="link-textbox" rows="12"  ng-model="links"> </textarea>
+                  
+
+                   <button type="submit" class="btn btn-default">Add links</button>
+               </form>
             </div>
 
-            <a class="btn btn-primary" ng-click="addGroup({{$index}})">Add to new group</a>
-            
+              <div class="row links-container" >
+                  <div class="col-xs-12 "  >
+                  <div  class="links" id="links">
+
+                    <div class="link clearfix" ng-repeat="link in crawledLinks" data-link-index="{{$index}}">
+                      <div class="clearfix">
+                        <div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.thumbnail!=''">
+                          <img src="{{link.thumbnail}}">
+                        </div>
+                        <div class="content">
+
+                          <a href="{{link.url}}"><p class="title">{{newCollection.links[$index].title}}</p></a>
+                          <p class="description">{{newCollection.links[$index].description | limitTo:200}}</p>
+                          <p class="provider">{{link.providerDisplay}}</p>
+                        </div>
+                        <div class="content-edit hide"> 
+                          <!-- <form >   -->
+                            <div class="form-group">  
+                                <label for="link-title"> Link Title
+                                    <input type="text" name="link-title" ng-model="newCollection.links[$index].title"> 
+                                </label>
+                                <br>
+                                <label for="link-description"> Link Description
+                                    <textarea rows="6" type="text" name="link-description" ng-model="newCollection.links[$index].description"></textarea>
+                                </label>
+                                <br>
+                                <button class="btn btn-primary" ng-click="editLink($event)">Finished Editing</button>
+                            </div>   
+                          <!-- </form> -->
+                        </div>  
+                      </div>
+                      
+                      <ul class="inline">
+                        <li><a class="" ng-click="addGroup({{$index}})">Add to group</a></li>
+                        <li><a class="" ng-click="editLink($event)">Edit</a></li>
+                        <li><a class="" ng-click="removeLink($event)">Remove</a></li>
+                      </ul>
+                      
+                      
+                    </div>
+
+                  </div>
+                  </div>  
+              </div>
+
+
+            </div>
+
+
+
           </div>
-        </div>
-        </div>  
+
+      </div>
+
     </div>
 
-
-  </div>
-
-
-
 </div>
-
-</div>
-<!-- <div class="row">
-    <div class="col-xs-12">
-
-        
-
-
-        <form role="form" ng-submit="saveCollection()" method="post">
-          <div class="form-group">
-            <input type="text" ng-model="newCollection.title">
-          </div>
-          <div class="form-group">
-            <input type="text" ng-model="newCollection.description">
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg">Save collection</button>
-
-        </form>
-        
-    </div>   
-</div>
- -->
-
-

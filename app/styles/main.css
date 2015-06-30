@@ -157,6 +157,10 @@ body {
   margin-left:50px;
 }
 
+.navbar>.container-fluid {
+  padding: 0 50px;
+}
+
 .navbar>.container .navbar-brand, 
 .navbar>.container-fluid .navbar-brand {
    font-family: 'Montserrat', sans-serif;
@@ -206,9 +210,6 @@ body {
 
 #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
@@ -226,9 +227,6 @@ body {
     margin-left: -33%;
     overflow-y: auto;
     background: #2a2a2a;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
@@ -247,8 +245,34 @@ body {
     margin-right: -250px;
 }
 
+/*.sidebar-nav {
+  padding: 30px;
+  padding-top: 20px;
+}*/
 .sidebar-nav {
-  padding-top: 100px;
+  padding: 30px;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+
+.sidebar-nav .controls {
+    padding-top: 50px;
+}
+
+.sidebar-nav .controls li {
+    margin-top: 10px;
+}
+
+.sidebar-nav > form {
+  margin-top: 40px;
+}
+
+.sidebar-nav li > a:not(.btn) {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
 
@@ -279,6 +303,48 @@ body {
         margin-right: 0;
     }
 }
+
+/*New collections*/
+
+#add-links-form textarea {
+  width: 100%;
+}
+
+form {
+  margin-top: 40px;
+}
+
+.content-edit {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.content-edit input,
+.content-edit textarea,
+.content-edit label {
+  width: 100%;
+}
+
+
+
+
+/*collections*/
+.collections {
+  list-style: none;
+}
+
+.collections > li {
+  margin-top: 1rem;
+}
+
+.collections .description {
+  margin-top: 0.5rem;
+}
+
+.collections .meta li > p {
+  margin-top: 0.5rem;
+}
+
 
 
 /*Collection*/
@@ -353,7 +419,7 @@ body {
 
 .links .title {
   font-weight: bold;
-  font-size: 120%;
+  font-size: 140%;
   margin-top: 0;
 }
 
@@ -361,14 +427,36 @@ body {
   margin-top:10px;
 }
 
-.links .thumbnail-holder img {
-  max-width: 100px;
-  height: auto;
-  padding-right: 1em;
-}
-
 .links .thumbnail-holder {
   float: left;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  margin-right: 1.4rem;;
+   transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);;
+
+    opacity: 0;
+
+}
+
+/*.links .thumbnail-holder .loading-gif {
+  -webkit-transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);;
+  -moz-transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);;
+  transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);;
+  opacity: 1;
+}
+
+.links .thumbnail-holder.loaded .loading-gif {
+  opacity: 0;
+}
+*/
+.links .thumbnail-holder.loaded {
+     opacity: 1;
+}
+
+.links .thumbnail-holder img 
+{  max-width: 80px;
+  height: auto;
 }
 
 .links .description, .links .title {
@@ -380,6 +468,12 @@ body {
   max-width: 80%;
 }
 
+.links p.provider {
+  font-weight: bold;
+  margin-top: 8px;
+  font-style: italic;
+}
+
 .links .link {
     margin-bottom: 4.7em;
 }
@@ -388,6 +482,8 @@ body {
   margin-top: 4em;
 }
 
+
+/**/
 
 
 /*Embeds*/
@@ -445,6 +541,11 @@ a[ng-click]{
     cursor: pointer;
 }
 
+div:empty,
+p:empty {
+   display: none;
+}
+
 
 
 textarea {
@@ -456,3 +557,14 @@ textarea {
 .embed-container > img {
   width: 100%;
 }
+
+.embed-container > img {
+  transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);
+
+  opacity: 0;
+}
+
+.embed-container > img.loaded {
+  opacity: 1;
+}
+

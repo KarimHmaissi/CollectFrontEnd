@@ -7,9 +7,16 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-        	<div class="sidebar-nav text-center">
+        	<div class="sidebar-nav">
         		<div class="controls">
-        			<a open="" href="" class="btn btn-primary" >Open all embeds</a>
+        			
+        		<h4>Options</h4>
+        			<ul class="inline">
+        				<li><a open="" href="" class="" >Open all embeds</a></li>
+        				<li><a ng-click="share()" class="">Share</a></li>
+        				<li><a ng-click="submitLink()" class="">Submit Link</a></li>
+        				<li><a ng-click="filter()" class="">Filter</a></li>
+        			</ul>
         		</div>
         	</div>
            
@@ -28,11 +35,7 @@
 	            <div class="row">
 	        	    <div class="col-lg-7 col-lg-offset-2">
 	        	    	<div class="collection-controls">
-	        	    		<ul class="inline">
-	        	    			<li><a ng-click="share()" class="">Share</a></li>
-	        	    			<li><a ng-click="submitLink()" class="">Submit Link</a></li>
-	        	    			<li><a ng-click="filter()" class="">Filter</a></li>
-	        	    		</ul>
+	        	    		
 	        	    		
 	        	    	</div>
 
@@ -45,7 +48,7 @@
 	            	    	<ul class="inline">
 	            	    		<li><p><span>{{collection.baseScore}}</span><span>votes</span></p></li>
 	            	    		<li><p><span>{{collection.links.length}}</span><span>links</span></p></li>
-	            	    		<li><p><span>27 minutes ago</span><span>created</span></p></li>
+	            	    		<li><p><span am-time-ago="collection.createdAt"></span><span>created</span></p></li>
 	            	    		<li><p><span><a href="#">DaveAnderson</a></span><span>owner</span></p></li>
 
 	            	    	</ul>
@@ -62,12 +65,12 @@
 	            		<div  class="links" ng-cloak>
 	            		  <div class="link clearfix" ng-repeat="link in collection.links">
 	            		  <div class="clearfix">
-	        	    		  	<div class="thumbnail-holder">
+	        	    		  	<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents">
 	        	    		  		<img src="{{link.linkUrl.thumbnail}}">
 	        	    		  	</div>
 	        	    		  	<div class="content">
 	        	    		  		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-	        	    		  		<p class="description">{{link.description | limitTo:140}}</p>
+	        	    		  		<p class="description">{{link.description | limitTo:240}}</p>
 	        	    		  		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
 	        	    		  	</div>
 	            		  	</div>

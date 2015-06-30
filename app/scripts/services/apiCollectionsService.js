@@ -2,7 +2,7 @@
 
 var module = angular.module('collectFrontEndApp');
 
-module.service("apiCollectionsService", function ($q, $http, $rootScope,  apiMainService) {
+module.service("apiCollectionsService", function ($q, $http, $rootScope, apiMainService) {
 
 	return {
 

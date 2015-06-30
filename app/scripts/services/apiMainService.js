@@ -4,7 +4,7 @@ var module = angular.module('collectFrontEndApp');
 
 module.service("apiMainService", function ($q, $http) {
 
-	var baseUrl = "http://192.168.0.3:1337/api/v1";
+	var baseUrl = "http://192.168.0.5:1337/api/v1";
 
 	var postHeaders = {
 		"Content-Type": "application/json"
