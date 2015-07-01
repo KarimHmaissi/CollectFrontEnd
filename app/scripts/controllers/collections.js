@@ -37,11 +37,23 @@ module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParam
 	//     $scope.collection = data;
 	// });
 
+	var collectionToGroup = function (collection) {
+		return _.groupBy(collection, "group");
+	};
+
 	if(typeof $routeParams.id === "string") {
 		$rootScope.previousPath = "/collections/" + $routeParams.id;
 
 		apiCollectionsService.get($routeParams.id).then(function (collection) {
+			collection.links = collectionToGroup(collection.links) 
+
+			$scope.groups = Object.keys(collection.links);
+
+
 			$scope.collection = collection;
+			console.log($scope.collection);
+			console.log($scope.groups);
+
 		}, errorCodeRedirector)
 	} else {
 		errorCodeRedirector($location, 404);
@@ -62,15 +74,19 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 	$scope.newCollection = {
 	  title: "Title of your new collection",
 	  description: "Description for your new collection. Limited to 200 characters",
+
 	  links: []
 	};
 
 	$scope.updatedLink = {
 		title: "",
 		description: ""
-	}
+	};
 
-	$scope.crawledLinks = [];
+	$scope.groups = [];
+
+	// $scope.crawledLinks = [];
+
 
 	$scope.submitLinks = function () {
 		var linkArray = $scope.links.split("\n");
@@ -92,10 +108,11 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 						  title: link.details.title,
 						  description: link.details.description,
 						  group: "misc",
-						  linkUrl: link.details.id
+						  linkUrl: link.details.id,
+						  linkDetails: link.details
 						});
 
-						$scope.crawledLinks.push(link.details);
+						// $scope.crawledLinks.push(link.details);
 
 					}
 				});
@@ -106,14 +123,31 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		$scope.links = "";
 	};
 
+
 	$scope.saveCollection = function () {
+		//grab links from scope.groups and add them back to $scope.newCollection
+		var i,
+			length = $scope.groups.length;
+		for(i = 0; i < length; i++) {
+			var groupLinks = $scope.groups[i].links;
+
+			var l,
+				lengthLinks = groupLinks.length;
+			for(l = 0; l < lengthLinks; l++) {
+				$scope.newCollection.links.push(groupLinks[l]);
+			}
+		}
+
+		console.log("about to send collection");
+		console.log($scope.newCollection);
+
+
 		apiCollectionsService.submit($scope.newCollection).then(function (newCollection) {
 			console.log("built new collection");
 			console.log(newCollection);
 			console.log(newCollection.id);
 			$location.path("/collections/" + newCollection.id);
 		});
-		console.log($scope.newCollection);
 	};
 
 
@@ -131,7 +165,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		var index = parseInt($el.closest(".link").attr("data-link-index"), 10);
 		console.log("removing: " + index)
 		$scope.newCollection.links.splice(index, 1);
-		$scope.crawledLinks.splice(index, 1);
+		// $scope.crawledLinks.splice(index, 1);
 
 
 
@@ -152,58 +186,8 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 
 		var $link = $(event.currentTarget).closest(".link");
 
-
-		//hide all edits
-		// $(".link").each(function (argument) {
-		// 	var $contentEdit = $(this).find(".content-edit");
-		// 	var $content = $(this).find(".content");
-
-		// 	if(!$contentEdit.hasClass("hide")) {
-		// 		$contentEdit.addClass("hide");
-		// 	}
-
-		// 	if($content.hasClass("hide")) {
-		// 		$content.removeClass("hide");
-		// 	}
-		// });
-
-		// var index = $link.attr("data-link-index");
-
-		// var linkInfo = $scope.newCollection.links[index];
-		// console.log("got link");
-		// console.log(linkInfo);
-		// $scope.updatedLink.linkEditTitle = linkInfo.title;
-		// $scope.updatedLink.linkEditDescription = linkInfo.description;
-
-		// //show this edit
-		// $link.find(".content").addClass("hide");
-		// $link.find(".content-edit").removeClass("hide");
-
 		$link.find(".content-edit").toggleClass("hide");
 	};
-
-	// $scope.closeEdit = function (event) {
-	// 	console.log("edit submit");
-	// 	var $link = $(event.currentTarget).closest(".link");
-	// 	$link.find(".content-edit").toggleClass("hide");
-
-		// console.log($scope.updatedLink.linkEditTitle);	
-		// console.log($scope.updatedLink.linkEditDescription);	
-
-		// var $form = $(event.currentTarget);
-		// var index = $form.closest(".link").attr("data-link-index");
-
-		// $scope.newCollection.links[index].title = $scope.updatedLink.linkEditTitle;
-		// $scope.newCollection.links[index].description = $scope.updatedLink.linkEditDescription;
-
-		// console.log($scope.newCollection.links[index]);
-
-		// $scope.updatedLink.linkEditDescription = "";
-		// $scope.updatedLink.linkEditTitle= "";
-
-		// $form.closest(".content-edit").addClass("hide");
-		// $form.find(".content").removeClass("hide");
-	// };
 
 
 

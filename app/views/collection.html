@@ -8,15 +8,25 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
         	<div class="sidebar-nav">
+        		
+
+        		<div class="groups-nav">
+        			
+	        		<h4>Groups</h4>
+	    			<ul class="inline">
+	    				<li ng-repeat="group in groups"><a href="#" >{{group}}</a></li>
+	    			</ul>
+        		</div>
+
         		<div class="controls">
         			
-        		<h4>Options</h4>
-        			<ul class="inline">
-        				<li><a open="" href="" class="" >Open all embeds</a></li>
-        				<li><a ng-click="share()" class="">Share</a></li>
-        				<li><a ng-click="submitLink()" class="">Submit Link</a></li>
-        				<li><a ng-click="filter()" class="">Filter</a></li>
-        			</ul>
+	        		<h4>Options</h4>
+	    			<ul class="inline">
+	    				<li><a open="" href="" class="" >Open all embeds</a></li>
+	    				<li><a ng-click="share()" class="">Share</a></li>
+	    				<li><a ng-click="submitLink()" class="">Submit Link</a></li>
+	    				<li><a ng-click="filter()" class="">Filter</a></li>
+	    			</ul>
         		</div>
         	</div>
            
@@ -63,21 +73,33 @@
 	            	    </div>
 	            	    
 	            		<div  class="links" ng-cloak>
-	            		  <div class="link clearfix" ng-repeat="link in collection.links">
-	            		  <div class="clearfix">
-	        	    		  	<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents">
-	        	    		  		<img src="{{link.linkUrl.thumbnail}}">
-	        	    		  	</div>
-	        	    		  	<div class="content">
-	        	    		  		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-	        	    		  		<p class="description">{{link.description | limitTo:240}}</p>
-	        	    		  		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
-	        	    		  	</div>
-	            		  	</div>
 
-	            		  	<a embed="" href="#" class="embed-link">Show</a>
+
+
+	            		  <div class="group clearfix" ng-repeat="(key, value) in collection.links">
+
+
+	            		  	  <a href="" expand=""><h4 class="group-name">{{key}}</h4></a>
+
+		            		  <div class="link clearfix" ng-repeat="link in value">
+		        	    		  	<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
+		        	    		  		<img src="{{link.linkUrl.thumbnail}}">
+		        	    		  	</div>
+		        	    		  	<div class="content">
+		        	    		  		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
+		        	    		  		<p class="description">{{link.description | limitTo:240}}</p>
+		        	    		  		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
+		        	    		  	</div>
+
+		        	    		  	<a embed="" href="#" class="embed-link">Show</a>
+		            		  	</div>
+
+		            		  	
 	            		  
-	            		  </div>
+	            		  </div><!-- group -->
+
+
+
 	            		</div>
 	        	    </div>
 

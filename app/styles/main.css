@@ -326,6 +326,119 @@ form {
 }
 
 
+/*Groups*/
+.group {
+  margin-bottom: 20px;
+}
+
+.group .link {
+  opacity: 1;
+  height: auto;
+  transition: opacity 1s ease-out;
+  overflow: hidden;
+}
+
+/*.group .link {
+  margin-top: 1.4rem;
+  margin-bottom: 2rem;
+}*/
+
+.group .link:first-child {
+  margin-top: 10px;
+}
+
+.group.collapsed .link {
+  opacity: 0; 
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.group.collapsed .link > * {
+  opacity: 0; 
+  height: 0;
+}
+
+.group.collapsed .group-name {
+  margin: 0;
+  margin-bottom: 8px;
+
+}
+
+.group-name {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #2A2A2A;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.sidebar-nav .groups-nav li {
+  width: 100%;
+
+  margin-top: 10px;
+}
+
+.sidebar-nav .groups-nav li a {
+/*  font-size: 16px;
+  line-height: 1;
+  font-weight: normal;
+  width: 100%;
+  font-family: "myriad-pro",sans-serif;
+  text-transform: none;*/
+}
+
+/*Add new group*/
+.add-to-group-wrapper {
+  background-color: #2a2a2a;
+  padding: 0;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+
+.add-to-group-wrapper h4 {
+  margin-top: 0;
+  padding: 10px 20px;
+}
+
+.add-to-group-wrapper form {
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+/*.add-to-group-wrapper .groups {
+  padding: 10px 20px;
+}*/
+
+.add-to-group-wrapper form label {
+  width: 100%;
+}
+
+.add-to-group-wrapper form input {
+  width: 60%;
+}
+
+.add-to-group-wrapper .groups > ul {
+
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.add-to-group-wrapper .groups ul li {
+  margin-top: 1px;
+  background-color: #3E3E40;
+  padding: 10px 20px;
+}
+
+
+/*.add-new-group-btn {
+  margin-top: 1px;
+  padding: 10px 20px;
+}*/
+
+
+
 
 
 /*collections*/
@@ -430,7 +543,7 @@ form {
 .links .thumbnail-holder {
   float: left;
   overflow: hidden;
-  width: 80px;
+  width: 70px;
   height: 80px;
   margin-right: 1.4rem;;
    transition: opacity 1000ms 300ms cubic-bezier(0.86, 0, 0.07, 1);;
@@ -468,14 +581,20 @@ form {
   max-width: 80%;
 }
 
-.links p.provider {
+.links p.provider,
+.links p.group {
   font-weight: bold;
   margin-top: 8px;
   font-style: italic;
 }
 
+
 .links .link {
-    margin-bottom: 4.7em;
+    /*margin-bottom: 4.7em;*/
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #2A2A2A;
+    border-radius: 6px;
 }
 
 .links-container {
@@ -567,4 +686,3 @@ textarea {
 .embed-container > img.loaded {
   opacity: 1;
 }
-

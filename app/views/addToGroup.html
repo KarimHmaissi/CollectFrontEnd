@@ -1,0 +1,27 @@
+<div class="add-to-group-wrapper">
+	<a class="add-to-group-btn">Add to group</a>
+
+	<div class="add-to-group hide">
+		<h4>Add link to group</h4>
+
+		<div class="groups">
+			<ul>
+				<li><a href="#" class="add-new-group-btn">New group +</a></li>
+				<li ng-repeat="group in groups" ><a href="#" class="existing-group-btn" data-group-name="{{group.name}}" data-group-index="{{$index}}">{{group.name}}</a></li>
+				
+					
+			</ul>
+		</div>
+
+		<div class="add-new-group hide">
+		
+			<form>
+				<div class="form-group">
+					<label>Group name</label>
+					<input type="text" class="group-name" required>
+					<button type="submit" class="btn btn-primary add-new-group-form-submit">Create group</button>
+				</div>	
+			</form>
+		</div>
+	</div>
+</div>
