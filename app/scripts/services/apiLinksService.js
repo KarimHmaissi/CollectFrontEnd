@@ -2,6 +2,8 @@
 
 var module = angular.module('collectFrontEndApp');
 
+var limiter = new Bottleneck(2, 1000);
+
 module.service("apiLinksService", function ($q, $http, $rootScope, apiMainService) {
 
 	return {
@@ -21,12 +23,21 @@ module.service("apiLinksService", function ($q, $http, $rootScope, apiMainServic
 
 			var json = JSON.stringify({url: url});
 
-			return $http({
+			var options = {
 				method: "POST",
 				url: apiMainService.baseUrl + "/links?access_token=" + $rootScope.session.token,
 				headers: apiMainService.postHeaders,
 				data: json,
-			}).then(apiMainService.successHandler, apiMainService.errorHandler);
+			};
+
+			return $q(function (resolve, reject) {
+				limiter.submit(function (cb) {
+					$http(options).success(function (data, status, headers, config) {
+						cb();
+						resolve(data);
+					});
+				});
+			});
 		},
 
 		update: function (req, res) {
