@@ -37,22 +37,22 @@ module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParam
 	//     $scope.collection = data;
 	// });
 
-	var collectionToGroup = function (collection) {
-		return _.groupBy(collection, "group");
-	};
+	// var collectionToGroup = function (collection) {
+	// 	return _.groupBy(collection, "group");
+	// };
 
 	if(typeof $routeParams.id === "string") {
 		$rootScope.previousPath = "/collections/" + $routeParams.id;
 
 		apiCollectionsService.get($routeParams.id).then(function (collection) {
-			collection.links = collectionToGroup(collection.links) 
+			// collection.links = collectionToGroup(collection.links) 
 
-			$scope.groups = Object.keys(collection.links);
+			// $scope.groups = Object.keys(collection.links);
 
 
 			$scope.collection = collection;
 			console.log($scope.collection);
-			console.log($scope.groups);
+			// console.log($scope.groups);
 
 		}, errorCodeRedirector)
 	} else {
@@ -75,7 +75,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 	  title: "Title of your new collection",
 	  description: "Description for your new collection. Limited to 200 characters",
 
-	  links: []
+	  groups: []
 	};
 
 	$scope.updatedLink = {
@@ -83,7 +83,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		description: ""
 	};
 
-	$scope.groups = [];
+	// $scope.groups = [];
 
 	// $scope.crawledLinks = [];
 
@@ -95,6 +95,20 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		var length = linkArray.length;
 		var processedLinks = [];
 
+
+		//add a new group if there are no groups
+
+		if($scope.newCollection.groups.length < 1) {
+			var miscGroup = {
+				name: "misc",
+				order: 1,
+				links: []
+			};
+
+			$scope.newCollection.groups.push(miscGroup);
+		}
+
+		
 		for(i = 0; i < length; i++) {
 
 			if(urlUtilityService.validUrl(linkArray[i])) {
@@ -103,11 +117,11 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 					console.log("got response from link submit");
 					console.log(link);
 
-					if(link.details) {
-						$scope.newCollection.links.push({
+					if(link.details && $scope.newCollection.groups.length > 0) {
+
+						$scope.newCollection.groups[0].links.push({
 						  title: link.details.title,
 						  description: link.details.description,
-						  group: "misc",
 						  linkUrl: link.details.id,
 						  linkDetails: link.details
 						});
@@ -126,17 +140,17 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 
 	$scope.saveCollection = function () {
 		//grab links from scope.groups and add them back to $scope.newCollection
-		var i,
-			length = $scope.groups.length;
-		for(i = 0; i < length; i++) {
-			var groupLinks = $scope.groups[i].links;
+		// var i,
+		// 	length = $scope.groups.length;
+		// for(i = 0; i < length; i++) {
+		// 	var groupLinks = $scope.groups[i].links;
 
-			var l,
-				lengthLinks = groupLinks.length;
-			for(l = 0; l < lengthLinks; l++) {
-				$scope.newCollection.links.push(groupLinks[l]);
-			}
-		}
+		// 	var l,
+		// 		lengthLinks = groupLinks.length;
+		// 	for(l = 0; l < lengthLinks; l++) {
+		// 		$scope.newCollection.links.push(groupLinks[l]);
+		// 	}
+		// }
 
 		console.log("about to send collection");
 		console.log($scope.newCollection);
@@ -153,10 +167,12 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 
 
 
-
+	// TODO
 	$scope.removeLink = function (event) {
 
-		// var index = parseInt(event.currentTarget.closest(".link").attr("link-index"), 10);
+
+
+/*		// var index = parseInt(event.currentTarget.closest(".link").attr("link-index"), 10);
 		var $el = $(event.currentTarget);
 
 		console.log(event.currentTarget);
@@ -173,7 +189,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		$(".link").each(function (index) {
 			var $el = $(this);
 			$el.attr("data-link-index", index);
-		});
+		});*/
 	};
 
 

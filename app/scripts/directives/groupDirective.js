@@ -84,7 +84,7 @@ module.directive("group", function () {
 					$scope.$apply(function () {
 						console.log(groupName);
 						console.log($scope.groups);
-						// $scope.groups.push({name: groupName});
+
 
 						var index = grabIndex();
 
