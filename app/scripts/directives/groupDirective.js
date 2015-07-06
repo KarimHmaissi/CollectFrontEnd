@@ -2,7 +2,7 @@
 
 var module = angular.module('collectFrontEndApp');
 
-module.directive("group", function () {
+module.directive("group", function (miscUtilityService) {
 
 	return {
 
@@ -70,8 +70,85 @@ module.directive("group", function () {
 			});
 
 
+
+
+			$scope.addNewGroupSubmit = function (e, group, link) {
+				e.preventDefault();
+				e.stopPropagation();
+
+
+				var groupName = $scope.newGroupName;
+
+				if(groupName != "") {
+
+					var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
+
+					if(groupIndex > -1) {
+
+						//find index and link
+						var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
+
+						//remove link from group array
+						group.ownedLinks.splice(linkIndex, 1);
+
+						//create new group 
+						$scope.newCollection.groups.push({
+							name: $scope.newGroupName,
+							order: $scope.newCollection.groups.length + 1,
+							ownedLinks: []
+						});
+
+						//add new link to newly created group
+						$scope.newCollection.groups[$scope.newCollection.groups.length - 1].ownedLinks.push(link);
+
+						closeWidget();
+
+
+					} else {
+						// group name already exists
+					}
+
+
+					
+				} else {
+					// No group no entered
+				}
+
+			};
+
+
+
+			$scope.addToExistingGroup = function (e, groupToAddTo, group, link) {
+			
+				e.preventDefault();
+				e.stopPropagation();
+
+
+				var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
+				var groupIndexToMoveLinkTo = miscUtilityService.indexOfObject(groupToAddTo, $scope.newCollection.groups, "name");
+
+				if(groupIndex > -1) {
+					//find index and link
+					var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
+
+					//remove link from group array
+					group.ownedLinks.splice(linkIndex, 1);
+
+					//add to existing group
+					$scope.newCollection.groups[groupIndexToMoveLinkTo].ownedLinks.push(link);
+
+					closeWidget();
+				}
+
+			};
+
+
+
+
+
+
 			//new group submit
-			$wrapper.find(".add-new-group-form-submit").on("click", function (e) {
+/*			$wrapper.find(".add-new-group-form-submit").on("click", function (e) {
 
 				e.preventDefault();
 				e.stopPropagation();
@@ -107,40 +184,40 @@ module.directive("group", function () {
 					});
 				}
 
-			});
+			});*/
 
 
 			//added to group
-			$wrapper.on("click", ".existing-group-btn", function (e) {
-				e.preventDefault();
-				e.stopPropagation();
+			// $wrapper.on("click", ".existing-group-btn", function (e) {
+			// 	e.preventDefault();
+			// 	e.stopPropagation();
 
-				var $el = $(this);
+			// 	var $el = $(this);
 
-				var index = grabIndex();
+			// 	var index = grabIndex();
 
-				$scope.$apply(function () {
-					var groupName = $el.attr("data-group-name");
+			// 	$scope.$apply(function () {
+			// 		var groupName = $el.attr("data-group-name");
 
-					$scope.newCollection.links[index].group = groupName;
+			// 		$scope.newCollection.links[index].group = groupName;
 
-					//remove link from scope.newcollection and add it to groups
-					var groupIndex = $el.attr("data-group-index");
+			// 		//remove link from scope.newcollection and add it to groups
+			// 		var groupIndex = $el.attr("data-group-index");
 
-					var link = $scope.newCollection.links[index];
-					$scope.newCollection.links.splice(index, 1);
+			// 		var link = $scope.newCollection.links[index];
+			// 		$scope.newCollection.links.splice(index, 1);
 
-					$scope.groups[groupIndex].links.push(link);
+			// 		$scope.groups[groupIndex].links.push(link);
 					
 
 
-					closeWidget();
-				});
+			// 		closeWidget();
+			// 	});
 				
 
 			
 
-			});
+			// });
 			
 
 			

@@ -54,22 +54,25 @@
 
 
 
-                      <div class="group" ng-repeat="group in newCollection.groups">
+                      <div class="group" ng-repeat="group in newCollection.groups | orderObjectBy:'order'" ng-init="editing=false">
                         <h3 class="group-name">{{group.name}}</h3>  
+                        <p class="temp">{{group.order}}</p>  
 
-                        <div class="link clearfix" ng-repeat="link in group.links" data-link-index="{{$index}}">
+                        <div class="link clearfix" ng-repeat="link in group.ownedLinks" data-link-index="{{$index}}">
                           <div class="clearfix">
                             <div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkDetails.thumbnail!=''">
                               <img src="{{link.linkDetails.thumbnail}}">
                             </div>
-                            <div class="content">
+                            <div class="content" ng-show="!editing">
 
                               <a href="{{link.linkDetails.url}}"><p class="title">{{link.title}}</p></a>
                               <p class="description">{{link.description | limitTo:200}}</p>
                               <p class="provider">{{link.linkDetails.providerDisplay}}</p>
                               <p class="group">{{link.group}}</p>
                             </div>
-                            <div class="content-edit hide"> 
+
+
+                            <div class="content-edit" ng-show="editing"> 
                               <!-- <form >   -->
                                 <div class="form-group">  
                                     <label for="link-title"> Link Title
@@ -80,15 +83,17 @@
                                         <textarea rows="6" type="text" name="link-description" ng-model="link.description"></textarea>
                                     </label>
                                     <br>
-                                    <button class="btn btn-primary" ng-click="editLink($event)">Finished Editing</button>
+                                    <button class="btn btn-primary" ng-click="editing=false">Finished Editing</button>
                                 </div>   
                               <!-- </form> -->
-                            </div>  
+                            </div>
+
+
                           </div>
                           
                           <ul class="inline">
                             <li><a class="" group="">Add to group</a></li>
-                            <li><a class="" ng-click="editLink($event)">Edit</a></li>
+                            <li><a class="" ng-click="editing=true">Edit</a></li>
                             <li><a class="" ng-click="removeLink($event)">Remove</a></li>
                           </ul>
                           

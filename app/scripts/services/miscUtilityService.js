@@ -13,7 +13,7 @@ module.service("miscUtilityService", function() {
 
         	if(objectArray.length > 0 && _.has(object, property)) {
 
-        		
+
         		for(i = 0; i < length; i++) {
 
         			if(_.has(objectArray[i], property)) {
@@ -27,6 +27,11 @@ module.service("miscUtilityService", function() {
         	}
 
         	return -1;
+        },
+
+        // [{linkUrl: {property: value}}]	
+        indexOfLink: function (link, linkArray, property) {
+        	return this.indexOfObject(link.linkDetails, _.pluck(linkArray, "linkDetails"), property);
         }
 
 	}

@@ -102,7 +102,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 			var miscGroup = {
 				name: "misc",
 				order: 1,
-				links: []
+				ownedLinks: []
 			};
 
 			$scope.newCollection.groups.push(miscGroup);
@@ -119,7 +119,7 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 
 					if(link.details && $scope.newCollection.groups.length > 0) {
 
-						$scope.newCollection.groups[0].links.push({
+						$scope.newCollection.groups[0].ownedLinks.push({
 						  title: link.details.title,
 						  description: link.details.description,
 						  linkUrl: link.details.id,
