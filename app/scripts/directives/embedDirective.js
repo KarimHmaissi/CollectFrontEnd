@@ -113,7 +113,7 @@ module.directive("embed", function ($compile, urlUtilityService) {
 						$(this).siblings().children(".thumbnail-holder").hide("fast");
 
 						$(this).children(".feed-preview-img").hide(300);
-						$(this).append(embedContainer);
+						$(this).closest(".content-wrapper").append(embedContainer);
 
 						$scope.$apply(); 
 

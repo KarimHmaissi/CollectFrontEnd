@@ -9,19 +9,42 @@ module.directive("expand", function () {
 		scope: true,
 
 		link: function ($scope, element, attrs) {
+			var openClose = function (openClose) {
 
-			var $element = $(element);
+				var i;
+				var length = $scope.collection.groups.length;
 
-			$element.on("click", function (e) {
+				for(i = 0; i < length; i++) {
+					$scope.$apply(function () {
+						$scope.collection.groups[i].showLinks = openClose;
+						
+					});
+				}
+				
+				// $scope.collection.groups =_.map($scope.collection.groups, function (group) {
+				// 	group.showLinks = openClose;
+				// 	return group;
+				// });
 
+			};
 
+			element.on("click", function (e) {
 				e.preventDefault();
 
-				var $el = $(this);
+				if($(element).attr("data-open-close") === "open") {
+					openClose(true);
+				} else {
+					openClose(false);
+				}
 
-				$el.closest(".group").toggleClass("collapsed");
+				// openClose(true);
 			});
 
+			
+
+			
+
+			
 
 		}
 	}

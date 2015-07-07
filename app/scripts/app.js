@@ -20,7 +20,8 @@ angular
     'angular-storage',
     'slugifier',
     'angular-images-loaded',
-    'angularMoment'
+    'angularMoment',
+    'ui.tree'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

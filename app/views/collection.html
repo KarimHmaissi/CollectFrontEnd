@@ -23,6 +23,8 @@
 	        		<h4>Options</h4>
 	    			<ul class="inline">
 	    				<li><a open="" href="" class="" >Open all embeds</a></li>
+	    				<li><a href="" class="" expand="" data-open-close="open">Expand all groups</a></li>
+	    				<li><a href="" class="" expand="" data-open-close="close">Contract all groups</a></li>
 	    				<li><a ng-click="share()" class="">Share</a></li>
 	    				<li><a ng-click="submitLink()" class="">Submit Link</a></li>
 	    				<li><a ng-click="filter()" class="">Filter</a></li>
@@ -57,7 +59,7 @@
 	            	    <div class="collection-meta" ng-cloak>
 	            	    	<ul class="inline">
 	            	    		<li><p><span>{{collection.baseScore}}</span><span>votes</span></p></li>
-	            	    		<li><p><span>{{collection.links.length}}</span><span>links</span></p></li>
+	            	    		<!-- <li><p><span>{{collection.links.length}}</span><span>links</span></p></li> -->
 	            	    		<li><p><span am-time-ago="collection.createdAt"></span><span>created</span></p></li>
 	            	    		<li><p><span><a href="#">DaveAnderson</a></span><span>owner</span></p></li>
 
@@ -76,32 +78,39 @@
 
 
 
-	            		  <div class="group clearfix" ng-repeat="group in collection.groups">
+	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=true">
 
+	            		  	<div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}">
+	            		  	  <span class="glyphicon" ng-class="{'glyphicon-chevron-right': !group.showLinks, 'glyphicon-chevron-down': group.showLinks}"></span>
+	            		  	  <p class="group-linknumber"><span>{{group.links.length}}</span> links</p>
+	            		  	  <h4 class="group-name">{{group.name}}</h4>
+	            		  	</div>
+	            		  	  
+	            		  	  <div class="link-wrapper" ng-show="group.showLinks" >
+	            		  	  	
+			            		  <div class="link clearfix" ng-repeat="link in group.links">
 
-	            		  	  <a href="" expand="" ng-if="group.name != 'misc'"><h4 class="group-name">{{group.name}}</h4></a>
+			            		  		<div class="content-wrapper">
+			            		  			<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
+			            		  				<img src="{{link.linkUrl.thumbnail}}">
+			            		  			</div>
+			            		  			<div class="content">
+			            		  				
 
-		            		  <div class="link clearfix" ng-repeat="link in group.links">
+			            		  				<ul class="inline">
+			            		  					<li><p class="meta-info">{{link.linkUrl.providerDisplay}}</p></li>
+			            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p></li>
+			            		  				</ul>	
+			            		  				<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
+			            		  				<!-- <p class="description">{{link.description | limitTo:240}}</p> -->
+			            		  				
+			            		  			</div>
 
-		            		  		<div class="content-wrapper">
-		            		  			<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
-		            		  				<img src="{{link.linkUrl.thumbnail}}">
-		            		  			</div>
-		            		  			<div class="content">
-		            		  				
+			            		  			<a embed="" href="#" class="embed-link">Show</a>
+			            		  		</div>
+			        	    		  	
+			            		  	</div>
 
-		            		  				<ul class="inline">
-		            		  					<li><p class="meta-info">{{link.linkUrl.providerDisplay}}</p></li>
-		            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p></li>
-		            		  				</ul>	
-		            		  				<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-		            		  				<!-- <p class="description">{{link.description | limitTo:240}}</p> -->
-		            		  				
-		            		  			</div>
-
-		            		  			<a embed="" href="#" class="embed-link">Show</a>
-		            		  		</div>
-		        	    		  	
 		            		  	</div>
 
 		            		  	

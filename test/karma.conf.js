@@ -40,6 +40,8 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/angular-moment/angular-moment.js',
       'bower_components/bottleneck/bottleneck.js',
+      'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
+      'bower_components/angular-ui-tree/dist/angular-ui-tree.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
