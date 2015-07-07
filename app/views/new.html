@@ -63,29 +63,32 @@
                             <div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkDetails.thumbnail!=''">
                               <img src="{{link.linkDetails.thumbnail}}">
                             </div>
-                            <div class="content" ng-show="!editing">
+               <!--              <div class="content" ng-show="!editing">
 
                               <a href="{{link.linkDetails.url}}"><p class="title">{{link.title}}</p></a>
                               <p class="description">{{link.description | limitTo:200}}</p>
                               <p class="provider">{{link.linkDetails.providerDisplay}}</p>
                               <p class="group">{{link.group}}</p>
                             </div>
+ -->
 
-
-                            <div class="content-edit" ng-show="editing"> 
+                            <div class="content-edit" > 
                               <!-- <form >   -->
                                 <div class="form-group">  
-                                    <label for="link-title"> Link Title
-                                        <input type="text" name="link-title" ng-model="link.title"> 
-                                    </label>
-                                    <br>
-                                    <label for="link-description"> Link Description
+                                    <!-- <label for="link-title"> Link Title -->
+                                        <!-- <input type="text" name="link-title" ng-model="link.title">  -->
+                                        <textarea rows="3" type="text" name="link-title" ng-model="link.title"></textarea>
+                                    <!-- </label> -->
+                                    <!-- <br> -->
+                                   <!--  <label for="link-description"> Link Description
                                         <textarea rows="6" type="text" name="link-description" ng-model="link.description"></textarea>
-                                    </label>
-                                    <br>
-                                    <button class="btn btn-primary" ng-click="editing=false">Finished Editing</button>
+                                    </label> -->
+                                    <!-- <br> -->
+                                    <!-- <button class="btn btn-primary" ng-click="editing=false">Finished Editing</button> -->
                                 </div>   
                               <!-- </form> -->
+                              <p class="provider">{{link.linkDetails.providerDisplay}}</p>
+                              <p class="group">{{link.group}}</p>
                             </div>
 
 

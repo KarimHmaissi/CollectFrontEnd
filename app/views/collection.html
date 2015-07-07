@@ -10,11 +10,11 @@
         	<div class="sidebar-nav">
         		
 
-        		<div class="groups-nav">
+        		<div class="groups-nav" ng-if="collection.groups.length > 1">
         			
 	        		<h4>Groups</h4>
-	    			<ul class="inline">
-	    				<li ng-repeat="group in collection.groups"><a href="#" >{{group.name}}</a></li>
+	    			<ul class="inline" >
+	    				<li ng-repeat="group in collection.groups"><a href="#" ng-if="group.name != 'misc'">{{group.name}}</a></li>
 	    			</ul>
         		</div>
 
@@ -79,19 +79,29 @@
 	            		  <div class="group clearfix" ng-repeat="group in collection.groups">
 
 
-	            		  	  <a href="" expand=""><h4 class="group-name">{{group.name}}</h4></a>
+	            		  	  <a href="" expand="" ng-if="group.name != 'misc'"><h4 class="group-name">{{group.name}}</h4></a>
 
 		            		  <div class="link clearfix" ng-repeat="link in group.links">
-		        	    		  	<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
-		        	    		  		<img src="{{link.linkUrl.thumbnail}}">
-		        	    		  	</div>
-		        	    		  	<div class="content">
-		        	    		  		<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-		        	    		  		<p class="description">{{link.description | limitTo:240}}</p>
-		        	    		  		<p class="provider">{{link.linkUrl.providerDisplay}}</p>
-		        	    		  	</div>
 
-		        	    		  	<a embed="" href="#" class="embed-link">Show</a>
+		            		  		<div class="content-wrapper">
+		            		  			<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
+		            		  				<img src="{{link.linkUrl.thumbnail}}">
+		            		  			</div>
+		            		  			<div class="content">
+		            		  				
+
+		            		  				<ul class="inline">
+		            		  					<li><p class="meta-info">{{link.linkUrl.providerDisplay}}</p></li>
+		            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p></li>
+		            		  				</ul>	
+		            		  				<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
+		            		  				<!-- <p class="description">{{link.description | limitTo:240}}</p> -->
+		            		  				
+		            		  			</div>
+
+		            		  			<a embed="" href="#" class="embed-link">Show</a>
+		            		  		</div>
+		        	    		  	
 		            		  	</div>
 
 		            		  	
