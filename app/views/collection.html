@@ -80,7 +80,8 @@
 
 	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=true">
 
-	            		  	<div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}">
+	            		  	<!-- <div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}"> -->
+	            		  	<div class="group-name-wrapper" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}">
 	            		  	  <span class="glyphicon" ng-class="{'glyphicon-chevron-right': !group.showLinks, 'glyphicon-chevron-down': group.showLinks}"></span>
 	            		  	  <p class="group-linknumber"><span>{{group.links.length}}</span> links</p>
 	            		  	  <h4 class="group-name">{{group.name}}</h4>
@@ -99,10 +100,12 @@
 
 			            		  				<ul class="inline">
 			            		  					<li><p class="meta-info">{{link.linkUrl.providerDisplay}}</p></li>
-			            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p></li>
+			            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p> 
+			            		  					<!-- <span class="glyphicon glyphicon-time"></span> -->
+			            		  					</li>
 			            		  				</ul>	
 			            		  				<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
-			            		  				<!-- <p class="description">{{link.description | limitTo:240}}</p> -->
+			            		  				<p class="description">{{link.description | limitTo:140}}</p>
 			            		  				
 			            		  			</div>
 

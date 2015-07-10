@@ -269,10 +269,16 @@ body {
 
 .sidebar-nav li > a:not(.btn) {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  line-height: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-size: 13px;
+  /* line-height: 12px; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.2em; */
+  color: #aaaaaa;
+}
+
+.sidebar-nav li > a:not(.btn):hover {
+  color: white;
+
 }
 
 
@@ -455,8 +461,8 @@ form {
 .group-name-wrapper .group-linknumber {
   /*font-size: 13px;*/
   float: right;
-  color: white;
-  margin-right: 20px;
+  /*color: white;*/
+  margin-right: 40px;
 }
 
 .group-name-wrapper .group-linknumber > span {
@@ -592,7 +598,7 @@ form {
 
 /*Collection*/
 .row.collection {
-  margin-top: 40px;
+  /*margin-top: 40px;*/
 }
 
 .collection-controls {
@@ -709,8 +715,13 @@ form {
      opacity: 1;
 }
 
-.links .thumbnail-holder img 
-{  max-width: 70px;
+.links .thumbnail-holder img {  
+  max-width: 70px;
+  height: auto;
+}
+
+img.link-thumbnail {
+  max-width: 70px;
   height: auto;
 }
 

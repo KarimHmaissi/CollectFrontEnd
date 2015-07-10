@@ -39,6 +39,7 @@ module.directive("group", function (miscUtilityService) {
 				}
 			};
 
+			openWidget();
 
 
 			//click add to group
@@ -81,32 +82,32 @@ module.directive("group", function (miscUtilityService) {
 
 				if(groupName != "") {
 
-					var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
+					// var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
 
-					if(groupIndex > -1) {
+					// if(groupIndex > -1) {
 
 						//find index and link
-						var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
+						// var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
 
 						//remove link from group array
-						group.ownedLinks.splice(linkIndex, 1);
+						// group.ownedLinks.splice(linkIndex, 1);
 
 						//create new group 
-						$scope.newCollection.groups.push({
+						$scope.newCollection.groups.unshift({
 							name: $scope.newGroupName,
 							order: $scope.newCollection.groups.length + 1,
 							ownedLinks: []
 						});
 
 						//add new link to newly created group
-						$scope.newCollection.groups[$scope.newCollection.groups.length - 1].ownedLinks.push(link);
+						// $scope.newCollection.groups[$scope.newCollection.groups.length - 1].ownedLinks.push(link);
 
-						closeWidget();
+						// closeWidget();
 
 
-					} else {
+					// } else {
 						// group name already exists
-					}
+					// }
 
 
 					
@@ -118,29 +119,29 @@ module.directive("group", function (miscUtilityService) {
 
 
 
-			$scope.addToExistingGroup = function (e, groupToAddTo, group, link) {
+			// $scope.addToExistingGroup = function (e, groupToAddTo, group, link) {
 			
-				e.preventDefault();
-				e.stopPropagation();
+			// 	e.preventDefault();
+			// 	e.stopPropagation();
 
 
-				var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
-				var groupIndexToMoveLinkTo = miscUtilityService.indexOfObject(groupToAddTo, $scope.newCollection.groups, "name");
+			// 	var groupIndex = miscUtilityService.indexOfObject(group, $scope.newCollection.groups, "name");
+			// 	var groupIndexToMoveLinkTo = miscUtilityService.indexOfObject(groupToAddTo, $scope.newCollection.groups, "name");
 
-				if(groupIndex > -1) {
-					//find index and link
-					var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
+			// 	if(groupIndex > -1) {
+			// 		//find index and link
+			// 		var linkIndex = miscUtilityService.indexOfLink(link, group.ownedLinks, "url");
 
-					//remove link from group array
-					group.ownedLinks.splice(linkIndex, 1);
+			// 		//remove link from group array
+			// 		group.ownedLinks.splice(linkIndex, 1);
 
-					//add to existing group
-					$scope.newCollection.groups[groupIndexToMoveLinkTo].ownedLinks.push(link);
+			// 		//add to existing group
+			// 		$scope.newCollection.groups[groupIndexToMoveLinkTo].ownedLinks.push(link);
 
-					closeWidget();
-				}
+			// 		closeWidget();
+			// 	}
 
-			};
+			// };
 
 
 

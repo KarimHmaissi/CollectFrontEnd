@@ -1,0 +1,57 @@
+<ol  class="links" id="links" ui-tree-nodes="" ng-model="newCollection.groups">
+
+  <!-- <li class="group" ng-repeat="group in newCollection.groups | orderObjectBy:'order'" ui-tree-node ng-init="editing=false" > -->
+  <li class="group" ng-repeat="group in newCollection.groups" ui-tree-node data-max-depth="-1" ng-init="editing=false" ui-tree-handle>
+    <h3 class="group-name">{{group.name}}</h3>  
+    <p class="temp">{{group.order}}</p>  
+
+    <ol class="link-wrapper" ui-tree-nodes="" ng-model="group.ownedLinks">
+      <li class="link clearfix" ng-repeat="link in group.ownedLinks" ui-tree-node data-max-depth="-1" data-link-index="{{$index}}" ui-tree-handle>
+        <div class="clearfix">
+         <!--  <div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkDetails.thumbnail!=''">
+            <img src="{{link.linkDetails.thumbnail}}">
+          </div> -->
+          <div class="content" ng-show="!editing">
+
+            <a href="{{link.linkDetails.url}}"><p class="title">{{link.title}}</p></a>
+            <p class="description">{{link.description | limitTo:200}}</p>
+            <p class="provider">{{link.linkDetails.providerDisplay}}</p>
+            <p class="group">{{link.group}}</p>
+          </div>
+
+
+          <div class="content-edit" > 
+            <!-- <form >   -->
+              <div class="form-group">  
+                  <!-- <label for="link-title"> Link Title -->
+                      <!-- <input type="text" name="link-title" ng-model="link.title">  -->
+                      <!-- <textarea rows="3" type="text" name="link-title" ng-model="link.title"></textarea> -->
+                  <!-- </label> -->
+                  <!-- <br> -->
+                 <!--  <label for="link-description"> Link Description
+                      <textarea rows="6" type="text" name="link-description" ng-model="link.description"></textarea>
+                  </label> -->
+                  <!-- <br> -->
+                  <!-- <button class="btn btn-primary" ng-click="editing=false">Finished Editing</button> -->
+              </div>   
+            <!-- </form> -->
+            <p class="provider">{{link.linkDetails.providerDisplay}}</p>
+            <p class="group">{{link.group}}</p>
+          </div>
+
+          <ul class="inline">
+            <li><a href="#" class="" group="" data-nodrag>Add to group</a></li>
+            <li><a class="" ng-click="editing=true" data-nodrag>Edit</a></li>
+            <li><a class="" ng-click="removeLink($event)" data-nodrag>Remove</a></li>
+          </ul>
+
+
+        </div>
+        
+        
+        
+      </li><!-- link -->
+    </ol>
+  </li>
+
+</ol><!-- ./links -->
