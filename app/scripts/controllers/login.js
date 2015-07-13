@@ -51,7 +51,7 @@ module.controller('LoginCtrl', function ($scope, $http, $rootScope, $location, s
 
           $http({
             method: "GET",
-            url: "http://46.101.58.112:1337/user/jwt"
+            url: "http://46.101.53.219:1337/user/jwt"
           }).then(tokenHandler);
       };
 
@@ -72,7 +72,7 @@ module.controller('LoginCtrl', function ($scope, $http, $rootScope, $location, s
 
       $http({
         method: "POST",
-        url: "http://46.101.58.112:1337/auth/login",
+        url: "http://46.101.53.219:1337/auth/login",
         data: $.param({email: $scope.email, password: $scope.password}),
         headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
       })
