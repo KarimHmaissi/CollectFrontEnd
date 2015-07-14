@@ -1045,52 +1045,19 @@ textarea {
   .link-mobile-controls {
     display: block;
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 80%;
-    margin-top: 20px;
-    padding: 0 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 
   .link-mobile-controls .btn {
     float: left;
-/*    background-color: white;
-    color: black;*/
+    background-color: white;
+    color: black;
     border-radius: 0;
     margin-right: 0;
-    width: 100%;
-    /*border: 1px solid #2A2A2A;*/
-  }
-
-
-  .links .title:hover {
-    color: inherit;
-  }
-
-
-
-
-
-
-  .link {
-    background-color: #2A2A2A;
-    transition: transform 0.2s ease;
-    padding: 20px;
-  }
-
-  .links .link {
-    padding: 0;
-  }
-
-  .link .content-wrapper {
-    position: relative;
-    background-color: #2A2A2A;
-    transition: transform 0.2s ease;
-    padding: 20px;
-  }
-
-  .link.clicked .content-wrapper {
-    transform: translateX(-90%);
+    width: 50%;
+    border: 1px solid #2A2A2A;
   }
 
 }

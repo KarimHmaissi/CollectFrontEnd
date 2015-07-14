@@ -42,6 +42,9 @@ module.exports = function(config) {
       'bower_components/bottleneck/bottleneck.js',
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/angular-ui-tree/dist/angular-ui-tree.min.js',
+      'bower_components/velocity/velocity.js',
+      'bower_components/velocity/velocity.ui.js',
+      'bower_components/angular-velocity/angular-velocity.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

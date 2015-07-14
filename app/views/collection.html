@@ -78,7 +78,7 @@
 
 
 
-	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=true">
+	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=false">
 
 	            		  	<!-- <div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}"> -->
 	            		  	<div class="group-name-wrapper" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}">
@@ -87,9 +87,9 @@
 	            		  	  <h4 class="group-name">{{group.name}}</h4>
 	            		  	</div>
 	            		  	  
-	            		  	  <div class="link-wrapper" ng-show="group.showLinks" >
+	            		  	  <div class="link-wrapper"  >
 	            		  	  	
-			            		  <div class="link clearfix" ng-repeat="link in group.links">
+			            		  <div class="link clearfix velocity-enter-transition-slideDownIn velocity-leave-transition-slideUpOut"  data-velocity-opts="{ stagger: 350, duration: 200 }" ng-repeat="link in group.links"  ng-show="group.showLinks" ng-init="link.showButtons=false" ng-click="link.showButtons = !link.showButtons" ng-class="{'clicked': link.showButtons}" >
 
 			            		  		<div class="content-wrapper">
 			            		  			<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
@@ -98,18 +98,29 @@
 			            		  			<div class="content">
 			            		  				
 
+			            		  				<p class="meta-info provider" style="">{{link.linkUrl.providerDisplay}}</p>
+			            		  				<img src="https://github.com/fluidicon.png" class="provider-icon">
 			            		  				<ul class="inline">
-			            		  					<li><p class="meta-info">{{link.linkUrl.providerDisplay}}</p></li>
+			            		  					<!-- <li></li> -->
 			            		  					<li><p class="meta-info">added <span am-time-ago="link.linkUrl">{{link.createdAt}}</span></p> 
 			            		  					<!-- <span class="glyphicon glyphicon-time"></span> -->
 			            		  					</li>
 			            		  				</ul>	
-			            		  				<a href="{{link.linkUrl.url}}"><p class="title">{{link.title}}</p></a>
+			            		  				<!-- <a href="{{link.linkUrl.url}}"> -->
+			            		  					<p class="title">{{link.title}}</p>
+			            		  				<!-- </a> -->
 			            		  				<p class="description">{{link.description | limitTo:140}}</p>
 			            		  				
 			            		  			</div>
 
-			            		  			<a embed="" href="#" class="embed-link">Show</a>
+			            		  			<!-- <a embed="" href="#" class="embed-link">Show</a> -->
+			            		  		</div>
+
+
+			            		  		<div class="link-mobile-controls velocity-enter-transition-slideLeftIn"  ng-show="link.showButtons"  data-velocity-opts="{ duration: 150 }">
+			            		  			<a href="{{link.linkUrl.url}}" class="btn btn-primary" ng-click="$event.stopPropagation();window.location='{{link.linkUrl.url}}'" >Goto Link</a>
+			            		  			<a class="btn btn-primary" embed="" href="#" ng-click="$event.stopPropagation()">Embed</a>
+
 			            		  		</div>
 			        	    		  	
 			            		  	</div>

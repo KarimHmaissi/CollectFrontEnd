@@ -21,7 +21,8 @@ angular
     'slugifier',
     'angular-images-loaded',
     'angularMoment',
-    'ui.tree'
+    'ui.tree',
+    'angular-velocity'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
