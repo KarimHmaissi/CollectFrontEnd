@@ -75,6 +75,10 @@ module.directive("embed", function ($compile, urlUtilityService) {
 			}
 
 
+			var appendEmbed = function ($link, embedContainer) {
+				$link.closest(".link").append(embedContainer);	
+			};
+
 
 
 			//add embed to dom
@@ -113,7 +117,11 @@ module.directive("embed", function ($compile, urlUtilityService) {
 						$(this).siblings().children(".thumbnail-holder").hide("fast");
 
 						$(this).children(".feed-preview-img").hide(300);
-						$(this).closest(".content-wrapper").append(embedContainer);
+
+
+						// $(this).closest(".content-wrapper").append(embedContainer);
+						// $(this).append(embedContainer);
+						appendEmbed($(this), embedContainer);
 
 						$scope.$apply(); 
 
@@ -137,7 +145,9 @@ module.directive("embed", function ($compile, urlUtilityService) {
 
 						embedElement.appendTo(embedContainer);
 
-						$(this).closest(".link").append(embedContainer);
+						// $(this).closest(".link").append(embedContainer);
+						// $(this).append(embedContainer);
+						appendEmbed($(this), embedContainer);
 					}
 
 
@@ -149,7 +159,8 @@ module.directive("embed", function ($compile, urlUtilityService) {
 						embedElement.appendTo(embedContainer);
 
 						$(this).children(".feed-preview-img").hide(300);
-						$(this).append(embedContainer);
+						// $(this).append(embedContainer);
+						appendEmbed($(this), embedContainer);
 					}
 
 
@@ -158,7 +169,10 @@ module.directive("embed", function ($compile, urlUtilityService) {
 					else if(largeThumbnail) {
 						var embedElement = $('<img />').attr({ 'src': link.linkUrl.thumbnail, 'alt':link.linkUrl.title })
 						embedElement.appendTo(embedContainer);
-						$(this).closest(".post").append(embedContainer);
+
+						// $(this).append(embedContainer);
+						appendEmbed($(this), embedContainer);
+						// $(this).closest(".post").append(embedContainer);
 					}
 
 
@@ -175,7 +189,7 @@ module.directive("embed", function ($compile, urlUtilityService) {
 
 			//if link has not title and an image embed just open the embed now
 			if($(element).closest(".link").find(".content .title").val() === "" && isImage) {
-				$(element).click();
+				// $(element).click();
 			}
 
 

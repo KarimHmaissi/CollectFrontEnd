@@ -119,7 +119,7 @@
 
 			            		  		<div class="link-mobile-controls velocity-enter-transition-slideLeftIn"  ng-show="link.showButtons"  data-velocity-opts="{ duration: 150 }">
 			            		  			<a href="{{link.linkUrl.url}}" class="btn btn-primary" ng-click="$event.stopPropagation();window.location='{{link.linkUrl.url}}'" >Goto Link</a>
-			            		  			<a class="btn btn-primary" embed="" href="#" ng-click="$event.stopPropagation()">Embed</a>
+			            		  			<a class="btn btn-primary" embed="" href="#" ng-click="$event.stopPropagation(); link.showButtons=false ">Embed</a>
 
 			            		  		</div>
 			        	    		  	

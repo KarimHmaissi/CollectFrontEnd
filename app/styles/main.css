@@ -431,7 +431,11 @@ form {
   -webkit-font-smoothing: subpixel-antialiased;
 
   /*fix this*/
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.group-name-wrapper:hover {
+  background-color: #424242;
 }
 
 .group .group-name-wrapper.expanded  {
