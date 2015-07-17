@@ -530,6 +530,11 @@ form {
   width: 100%;
 
   margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.sidebar-nav .groups-nav li.expanded a {
+  color: #ffffff;
 }
 
 .sidebar-nav .groups-nav li a {
@@ -643,6 +648,7 @@ form {
   line-height: 27px;
   color: #e2e2e2;
   margin-top: 22px;
+  max-width: 650px;
 }
 
 .collection .collection-header-meta {
@@ -766,8 +772,12 @@ img.link-thumbnail {
   height: auto;
 }
 
+.links .description {
+  max-width: 600px;
+}
+
 .links .description, .links .title {
-  max-width: 400px;
+  /*max-width: 400px;*/
   /*max-width: 600px;*/
 }
 
@@ -1100,9 +1110,9 @@ textarea {
 }
 
 @media only screen and (min-width : 769px) {
-/*  .link-mobile-controls {
+  .link-mobile-controls {
     display: none !important;
-  }*/
+  }
 }
 
 

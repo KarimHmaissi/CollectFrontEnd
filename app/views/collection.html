@@ -14,7 +14,7 @@
         			
 	        		<h4>Groups</h4>
 	    			<ul class="inline" >
-	    				<li ng-repeat="group in collection.groups"><a href="#" ng-if="group.name != 'misc'">{{group.name}}</a></li>
+	    				<li ng-repeat="group in collection.groups" ng-class="{'expanded': group.showLinks}" ng-click="group.showLinks = !group.showLinks"><a href="#" ng-if="group.name != 'misc'">{{group.name}}</a></li>
 	    			</ul>
         		</div>
 
@@ -45,7 +45,7 @@
 
 	            <!-- <p>{{collection.baseScore}} score</p>  -->
 	            <div class="row">
-	        	    <div class="col-lg-7 col-lg-offset-2">
+	        	    <div class="col-lg-9 col-lg-offset-1">
 	        	    	<div class="collection-controls">
 	        	    		
 	        	    		
@@ -81,7 +81,7 @@
 	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=false">
 
 	            		  	<!-- <div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}"> -->
-	            		  	<div class="group-name-wrapper" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}">
+	            		  	<div class="group-name-wrapper" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}" >
 	            		  	  <span class="glyphicon" ng-class="{'glyphicon-chevron-right': !group.showLinks, 'glyphicon-chevron-down': group.showLinks}"></span>
 	            		  	  <p class="group-linknumber"><span>{{group.links.length}}</span> links</p>
 	            		  	  <h4 class="group-name">{{group.name}}</h4>
@@ -91,7 +91,7 @@
 	            		  	  	
 			            		  <div class="link clearfix velocity-enter-transition-slideDownIn velocity-leave-transition-slideUpOut"  data-velocity-opts="{ stagger: 350, duration: 200 }" ng-repeat="link in group.links"  ng-show="group.showLinks" ng-init="link.showButtons=false" ng-click="link.showButtons = !link.showButtons" ng-class="{'clicked': link.showButtons}" >
 
-			            		  		<div class="content-wrapper">
+			            		  		<div class="content-wrapper" >
 			            		  			<div class="thumbnail-holder images-loaded" images-loaded-events="ctrl.imgLoadedEvents" ng-if="link.linkUrl.thumbnail!=''">
 			            		  				<img src="{{link.linkUrl.thumbnail}}">
 			            		  			</div>
@@ -106,14 +106,14 @@
 			            		  					<!-- <span class="glyphicon glyphicon-time"></span> -->
 			            		  					</li>
 			            		  				</ul>	
-			            		  				<!-- <a href="{{link.linkUrl.url}}"> -->
+			            		  				<a href="{{link.linkUrl.url}}">
 			            		  					<p class="title">{{link.title}}</p>
-			            		  				<!-- </a> -->
+			            		  				</a>
 			            		  				<p class="description">{{link.description | limitTo:140}}</p>
 			            		  				
 			            		  			</div>
 
-			            		  			<!-- <a embed="" href="#" class="embed-link">Show</a> -->
+			            		  			<a embed="" href="#" class="embed-link">Show</a>
 			            		  		</div>
 
 

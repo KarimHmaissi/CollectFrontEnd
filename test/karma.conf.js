@@ -45,6 +45,8 @@ module.exports = function(config) {
       'bower_components/velocity/velocity.js',
       'bower_components/velocity/velocity.ui.js',
       'bower_components/angular-velocity/angular-velocity.min.js',
+      'bower_components/jquery-waypoints/waypoints.js',
+      'bower_components/angular-waypoints/dist/angular-waypoints.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -22,7 +22,8 @@ angular
     'angular-images-loaded',
     'angularMoment',
     'ui.tree',
-    'angular-velocity'
+    'angular-velocity',
+    'zumba.angular-waypoints'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
