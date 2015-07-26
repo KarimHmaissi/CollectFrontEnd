@@ -66,12 +66,14 @@ module.directive("embed", function ($compile, urlUtilityService) {
 				var newImage = new Image();
 				newImage.src = link.linkUrl.thumbnail;
 
-				if(newImage.width > 205) {
-				    largeThumbnail = true;
+
+				element.hide();
+	/*			if(newImage.width > 205) {
+				    // largeThumbnail = true;
 				} else {
 				    //no media to embed hide element
 				    element.hide();
-				}
+				}*/
 			}
 
 
@@ -107,7 +109,8 @@ module.directive("embed", function ($compile, urlUtilityService) {
 
 						var fullResoLink = $("<a />", {
 							href: link.linkUrl.url, 
-							text: "View full resolution", class: "row"
+							text: "View full resolution", class: "row",
+							target: "_blank"
 						});
 
 						embedElement.appendTo(embedContainer);

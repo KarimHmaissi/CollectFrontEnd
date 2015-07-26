@@ -21,10 +21,6 @@ module.directive("expand", function () {
 					});
 				}
 				
-				// $scope.collection.groups =_.map($scope.collection.groups, function (group) {
-				// 	group.showLinks = openClose;
-				// 	return group;
-				// });
 
 			};
 

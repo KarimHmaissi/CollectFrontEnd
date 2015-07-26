@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc function
  * @name collectFrontEndApp.controller:MainCtrl
@@ -26,7 +27,7 @@ module.controller("CollectionsIndexCtrl", function ($scope, apiCollectionsServic
 
 
 //get
-module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParams, apiCollectionsService, $rootScope) {
+module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParams, apiCollectionsService, $rootScope, $anchorScroll) {
 
 
 	//stubbed 
@@ -37,22 +38,20 @@ module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParam
 	//     $scope.collection = data;
 	// });
 
-	// var collectionToGroup = function (collection) {
-	// 	return _.groupBy(collection, "group");
+	// $scope.scrollTo = function(event, id) {
+	// 	event.preventDefault();
+	// 	$location.hash(id);
+	// 	console.log($location.hash());
+	// 	$anchorScroll();
 	// };
 
 	if(typeof $routeParams.id === "string") {
 		$rootScope.previousPath = "/collections/" + $routeParams.id;
 
 		apiCollectionsService.get($routeParams.id).then(function (collection) {
-			// collection.links = collectionToGroup(collection.links) 
-
-			// $scope.groups = Object.keys(collection.links);
-
 
 			$scope.collection = collection;
 			console.log($scope.collection);
-			// console.log($scope.groups);
 
 		}, errorCodeRedirector)
 	} else {
@@ -82,10 +81,6 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 		title: "",
 		description: ""
 	};
-
-	// $scope.groups = [];
-
-	// $scope.crawledLinks = [];
 
 
 	$scope.submitLinks = function () {
@@ -139,18 +134,6 @@ module.controller("CollectionsSubmitCtrl", function ($scope, $location, apiColle
 
 
 	$scope.saveCollection = function () {
-		//grab links from scope.groups and add them back to $scope.newCollection
-		// var i,
-		// 	length = $scope.groups.length;
-		// for(i = 0; i < length; i++) {
-		// 	var groupLinks = $scope.groups[i].links;
-
-		// 	var l,
-		// 		lengthLinks = groupLinks.length;
-		// 	for(l = 0; l < lengthLinks; l++) {
-		// 		$scope.newCollection.links.push(groupLinks[l]);
-		// 	}
-		// }
 
 		console.log("about to send collection");
 		console.log($scope.newCollection);

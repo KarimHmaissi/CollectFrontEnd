@@ -14,7 +14,7 @@
         			
 	        		<h4>Groups</h4>
 	    			<ul class="inline" >
-	    				<li ng-repeat="group in collection.groups" ng-class="{'expanded': group.showLinks}" ng-click="group.showLinks = !group.showLinks"><a href="#" ng-if="group.name != 'misc'">{{group.name}}</a></li>
+	    				<li ng-repeat="group in collection.groups"  ng-class="{'expanded': group.showLinks}" ng-click="group.showLinks = !group.showLinks"><a href="" ng-if="group.name != 'misc'" >{{group.name}}</a></li>
 	    			</ul>
         		</div>
 
@@ -58,7 +58,7 @@
 
 	            	    <div class="collection-meta" ng-cloak>
 	            	    	<ul class="inline">
-	            	    		<li><p><span>{{collection.baseScore}}</span><span>votes</span></p></li>
+	            	    		<li><p><span>{{collection.upvotes}}</span><span>votes</span></p></li>
 	            	    		<!-- <li><p><span>{{collection.links.length}}</span><span>links</span></p></li> -->
 	            	    		<li><p><span am-time-ago="collection.createdAt"></span><span>created</span></p></li>
 	            	    		<li><p><span><a href="#">DaveAnderson</a></span><span>owner</span></p></li>
@@ -78,11 +78,11 @@
 
 
 
-	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=false">
+	            		  <div class="group clearfix" ng-repeat="group in collection.groups" ng-init="group.showLinks=false" id="{{group.name}}">
 
 	            		  	<!-- <div class="group-name-wrapper" ng-if="group.name != 'misc'" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}"> -->
 	            		  	<div class="group-name-wrapper" ng-click="group.showLinks=!group.showLinks" ng-class="{'expanded': group.showLinks}" >
-	            		  	  <span class="glyphicon" ng-class="{'glyphicon-chevron-right': !group.showLinks, 'glyphicon-chevron-down': group.showLinks}"></span>
+	            		  	  <span class="glyphicon glyphicon-chevron-right" ></span>
 	            		  	  <p class="group-linknumber"><span>{{group.links.length}}</span> links</p>
 	            		  	  <h4 class="group-name">{{group.name}}</h4>
 	            		  	</div>

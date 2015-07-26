@@ -103,7 +103,8 @@
                                     <li><p class="meta-info">{{link.linkDetails.providerDisplay}}</p></li>
                                     <li><p class="meta-info">added <span am-time-ago="link.linkDetails">{{link.createdAt}}</span></p></li>
                                   </ul> 
-                                  <a href="{{link.linkDetails.url}}"><p class="title">{{link.title}}</p></a>
+                                  <!-- <a href="{{link.linkDetails.url}}"><p class="title">{{link.title}}</p></a> -->
+                                  <input type="text" ng-model="link.title">{{link.title}}
                                   <!-- <p class="description">{{link.description | limitTo:240}}</p> -->
                                   
                                 </div>

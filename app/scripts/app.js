@@ -84,6 +84,12 @@ angular
             url: "http://192.168.0.4:1337/auth/logout"
         }).success(handler);
     };
+
+    //when the route is changed scroll to the proper element.
+      $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+        $location.hash($routeParams.scrollTo);
+        $anchorScroll();  
+      });
   })
   // .config(function (RestangularProvider) {
   //   RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});

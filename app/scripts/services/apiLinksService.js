@@ -2,7 +2,7 @@
 
 var module = angular.module('collectFrontEndApp');
 
-var limiter = new Bottleneck(2, 1000);
+var limiter = new Bottleneck(2, 500);
 
 module.service("apiLinksService", function ($q, $http, $rootScope, apiMainService) {
 
