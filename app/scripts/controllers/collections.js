@@ -24,7 +24,7 @@ module.controller("CollectionsIndexCtrl", function ($scope, apiCollectionsServic
 		$scope.collections = collections;
 	}, errorCodeRedirector);
 });
-
+-
 
 //get
 module.controller("CollectionsGetCtrl", function ($scope, $location, $routeParams, apiCollectionsService, $rootScope, $anchorScroll) {

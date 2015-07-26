@@ -43,6 +43,12 @@ angular
       })
 
 
+      .when('/incoming/:id/:title', {
+        templateUrl: 'views/incoming.html',
+        controller: 'IncomingGetCtrl'
+      })
+
+
       .when('/new', {
         templateUrl: 'views/new.html',
         controller: 'CollectionsSubmitCtrl'

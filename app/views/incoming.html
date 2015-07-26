@@ -46,27 +46,10 @@
 	            <!-- <p>{{collection.baseScore}} score</p>  -->
 	            <div class="row">
 	        	    <div class="col-lg-9 col-lg-offset-1">
-	        	    	<div class="collection-controls">
-	        	    		
-	        	    		
-	        	    	</div>
+	        	    	
+	        	    	<p>This is a list of links submitted by people other than the mod of this collection. If a link recieves over 5 upvotes it is added to the main collection.</p>
 
-	            	    <div class="collection-header" ng-cloak>
-	            	    	<h1 class="title">{{collection.title}}</h1>
-	            	    	<p class="description">{{collection.description}}</p>
-	            	    </div>
-
-	            	    <div class="collection-meta" ng-cloak>
-	            	    	<ul class="inline">
-	            	    		<li><p><span>{{collection.upvotes}}</span><span>votes</span></p></li>
-	            	    		<!-- <li><p><span>{{collection.links.length}}</span><span>links</span></p></li> -->
-	            	    		<li><p><span am-time-ago="collection.createdAt"></span><span>created</span></p></li>
-	            	    		<li><p><span><a href="#">DaveAnderson</a></span><span>owner</span></p></li>
-
-	            	    	</ul>
-	            	    </div>
-
-	            	    <a href="/incoming/{{collection.id}}/{{collection.title | slugify}}">Incoming Links</a>
+	        	    	<a href="/collections/{{collection.id}}/{{collection.title | slugify}}">Back to collection</a>
 
 	            	    <div class="collection-controls">
 	            	    	<ul class="inline">
